@@ -510,6 +510,7 @@ public class PlayerCommandService {
 
     public PlaybackQueueModificationResponse setTracks(@JsonRpcParamStructure PlaybackQueueSetTracksRequest request) {
         synchronized (syncObject) {
+			playerStatus.setPlaybackMode(PlaybackMode.QUEUE_STATIC);
             playerStatus.getPlaybackQueue().setId(request.getPlaylistId());
             playerStatus.getPlaybackQueue().setName(request.getPlaylistName());
             List<PlaybackQueueItemInstance> instances = createInstanceList(request.getItems());
@@ -601,6 +602,7 @@ public class PlayerCommandService {
     @JsonRpcResult("playbackQueuePos")
     public Integer setTrack(@JsonRpcParam(name = "playbackQueuePos") Integer playbackQueuePos) {
         synchronized (syncObject) {
+			playerStatus.setPlaybackMode(PlaybackMode.QUEUE_STATIC);
             if (playbackQueuePos != null && playbackQueuePos < playerStatus.getPlaybackQueue().getItems().size()) {
                 playerStatus.setPlaybackQueuePos(playbackQueuePos);
                 playerStatus.setSeekPos(0d);
