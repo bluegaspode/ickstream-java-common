@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2013-2014, ickStream GmbH
+  ~ Copyright (c) 2013-2015, ickStream GmbH
   ~ All rights reserved.
   ~
   ~ Redistribution and use in source and binary forms, with or without
@@ -30,20 +30,18 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ickstream.common.ickprotocol</groupId>
-    <artifactId>ickstream-ickprotocol</artifactId>
+    <artifactId>ickstream-ickprotocol-campaign</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>ickstream-ickprotocol</name>
+    <name>ickstream-ickprotocol-campaign</name>
     <organization>
         <name>ickStream GmbH</name>
         <url>http://www.ickstream.com</url>
     </organization>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>        
     </properties>
 
     <scm>
@@ -65,17 +63,53 @@
         </snapshotRepository>
     </distributionManagement>
 
-    <modules>
-        <module>common</module>
-        <module>core</module>
-        <module>player</module>
-        <module>content</module>
-        <module>favorites</module>
-        <module>playlists</module>
-        <module>library</module>
-        <module>scrobble</module>
-        <module>campaign</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>com.ickstream.common.ickprotocol</groupId>
+            <artifactId>ickstream-ickprotocol-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ickstream.common.ickprotocol</groupId>
+            <artifactId>ickstream-ickprotocol-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ickstream.common.jsonrpc</groupId>
+            <artifactId>ickstream-jsonrpc</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ickstream.common.ickp2p.java</groupId>
+            <artifactId>ickstream-ickp2p-java-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+        <!-- TEST SCOPE -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -85,11 +119,17 @@
                     <execution>
                         <id>attach-javadocs</id>
                         <goals>
-                            <goal>aggregate-jar</goal>
+                            <goal>jar</goal>
                         </goals>
-                        <phase>package</phase>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -39,6 +39,7 @@ public class ServiceResponse {
     private String url;
     private String addServiceUrl;
     private String mainCategory;
+    private Boolean mandatory;
     private List<ImageReference> images;
 
     public String getId() {
@@ -95,5 +96,13 @@ public class ServiceResponse {
 
     public void setImages(List<ImageReference> images) {
         this.images = images;
+    }
+
+    public Boolean getMandatory() {
+        return mandatory;
+    }
+
+    public void setMandatory(Boolean mandatory) {
+        this.mandatory = mandatory;
     }
 }

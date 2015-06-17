@@ -70,16 +70,19 @@ public @interface JsonRpcError {
 
     /**
      * The error code to use in JSON-RPC response message
+     * @return Error code
      */
     int code();
 
     /**
      * The error description to use in JSON-RPC response message
+     * @return Error message
      */
     String message();
 
     /**
      * The additional data about the error to use in JSON-RPC response message
+     * @return Additional information about the error
      */
     String data() default "";
 }

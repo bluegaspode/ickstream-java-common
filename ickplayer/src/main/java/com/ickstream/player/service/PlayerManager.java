@@ -29,6 +29,8 @@
 package com.ickstream.player.service;
 
 public interface PlayerManager {
+    String getId();
+
     void setUserId(String userId);
 
     String getUserId();

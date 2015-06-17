@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, ickStream GmbH
+ * Copyright (c) 2013-2015, ickStream GmbH
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,61 +26,20 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.ickstream.protocol.service.player;
+package com.ickstream.protocol.service.campaign;
 
-public class PlayerConfigurationResponse {
-    String id;
-    String playerName;
-    String playerModel;
-    String cloudCoreUrl;
-    CloudCoreStatus cloudCoreStatus;
-    String userId;
+import com.ickstream.protocol.common.ChunkedResponse;
 
-    public String getId() {
-        return id;
+import java.util.List;
+
+public class FindCampaignsResponse extends ChunkedResponse {
+    private List<CampaignResponse> items;
+
+    public List<CampaignResponse> getItems() {
+        return items;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public String getPlayerModel() {
-        return playerModel;
-    }
-
-    public void setPlayerModel(String playerModel) {
-        this.playerModel = playerModel;
-    }
-
-    public String getCloudCoreUrl() {
-        return cloudCoreUrl;
-    }
-
-    public void setCloudCoreUrl(String cloudCoreUrl) {
-        this.cloudCoreUrl = cloudCoreUrl;
-    }
-
-    public CloudCoreStatus getCloudCoreStatus() {
-        return cloudCoreStatus;
-    }
-
-    public void setCloudCoreStatus(CloudCoreStatus cloudCoreStatus) {
-        this.cloudCoreStatus = cloudCoreStatus;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setItems(List<CampaignResponse> items) {
+        this.items = items;
     }
 }

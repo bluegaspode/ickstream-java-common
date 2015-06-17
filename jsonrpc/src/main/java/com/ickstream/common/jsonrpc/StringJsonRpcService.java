@@ -37,15 +37,22 @@ import java.io.StringWriter;
 /**
  * Implementation of a JSON-RPC service, the purpose is to abstract JSON-RPC transport protocol and parsing from the
  * service implementation.
- * <p/>
+ * <p>
  * The communication is handled as {@link String} objects. If the communication channel is already using
  * {@link java.io.InputStream} and {@link java.io.OutputStream} it's preferred to use the {@link StreamJsonRpcService} instead of this
  * class
- * <p/>
+ * </p>
+ * <p>
  * See {@link StreamJsonRpcService} for more details
+ * </p>
  */
 public class StringJsonRpcService extends StreamJsonRpcService {
     /**
+     * @param serviceImplementation The service implementation that implements the service interface
+     * @param serviceInterface      The service interface to expose
+     * @param <T>                   The service implementation to use
+     * @param <I>                   The service interface to expose
+     *
      * See {@link StreamJsonRpcService#StreamJsonRpcService(Object, Class)} for more information
      */
     public <I, T extends I> StringJsonRpcService(T serviceImplementation, Class<I> serviceInterface) {
@@ -53,6 +60,12 @@ public class StringJsonRpcService extends StreamJsonRpcService {
     }
 
     /**
+     * @param serviceImplementation The service implementation that implements the service interface
+     * @param serviceInterface      The service interface to expose
+     * @param returnOnVoid          true if void methods should return a JSON-RPC response, else false
+     * @param <T>                   The service implementation to use
+     * @param <I>                   The service interface to expose
+     *
      * See {@link StreamJsonRpcService#StreamJsonRpcService(Object, Class, Boolean)} for more information
      */
     public <I, T extends I> StringJsonRpcService(T serviceImplementation, Class<I> serviceInterface, Boolean returnOnVoid) {
@@ -60,6 +73,13 @@ public class StringJsonRpcService extends StreamJsonRpcService {
     }
 
     /**
+     * @param serviceImplementation The service implementation that implements the service interface
+     * @param serviceInterface      The service interface to expose
+     * @param returnOnVoid          true if void methods should return a JSON-RPC response, else false
+     * @param ignoreResponses       true if response message should be completely ignored
+     * @param <T>                   The service implementation to use
+     * @param <I>                   The service interface to expose
+     *
      * See {@link StreamJsonRpcService#StreamJsonRpcService(Object, Class, Boolean, Boolean)} for more information
      */
     public <I, T extends I> StringJsonRpcService(T serviceImplementation, Class<I> serviceInterface, Boolean returnOnVoid, Boolean ignoreResponses) {

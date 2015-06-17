@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, ickStream GmbH
+ * Copyright (c) 2013-2015, ickStream GmbH
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,15 +26,14 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.ickstream.protocol.service.player;
+package com.ickstream.protocol.service.campaign;
 
-public class PlayerConfigurationResponse {
-    String id;
-    String playerName;
-    String playerModel;
-    String cloudCoreUrl;
-    CloudCoreStatus cloudCoreStatus;
-    String userId;
+public class CampaignResponse {
+    private String id;
+    private String name;
+    private String description;
+    private String serviceId;
+    private Long availableCodes;
 
     public String getId() {
         return id;
@@ -44,43 +43,35 @@ public class PlayerConfigurationResponse {
         this.id = id;
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public String getName() {
+        return name;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPlayerModel() {
-        return playerModel;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPlayerModel(String playerModel) {
-        this.playerModel = playerModel;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getCloudCoreUrl() {
-        return cloudCoreUrl;
+    public String getServiceId() {
+        return serviceId;
     }
 
-    public void setCloudCoreUrl(String cloudCoreUrl) {
-        this.cloudCoreUrl = cloudCoreUrl;
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
     }
 
-    public CloudCoreStatus getCloudCoreStatus() {
-        return cloudCoreStatus;
+    public Long getAvailableCodes() {
+        return availableCodes;
     }
 
-    public void setCloudCoreStatus(CloudCoreStatus cloudCoreStatus) {
-        this.cloudCoreStatus = cloudCoreStatus;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setAvailableCodes(Long availableCodes) {
+        this.availableCodes = availableCodes;
     }
 }
