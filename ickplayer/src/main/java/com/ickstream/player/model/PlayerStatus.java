@@ -29,7 +29,9 @@
 package com.ickstream.player.model;
 
 import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ickstream.protocol.service.player.PlaybackMode;
 import com.ickstream.protocol.service.player.PlaybackQueueItem;
 import com.ickstream.protocol.service.player.PlaybackQueueMode;
 
@@ -41,7 +43,11 @@ public class PlayerStatus {
     private Double seekPos;
     private long timeSeekPosWasSet;
     private Integer playbackQueuePos;
+    private Integer radioPlaybackPos;
     private PlaybackQueueMode playbackQueueMode = PlaybackQueueMode.QUEUE;
+    private PlaybackMode playbackMode = PlaybackMode.QUEUE_STATIC;
+    @JsonIgnore
+    private PlaybackQueue radioPlaybackQueue;
     @JsonIgnore
     private PlaybackQueue playbackQueue;
 
@@ -150,11 +156,19 @@ public class PlayerStatus {
 
     @JsonIgnore
     public PlaybackQueueItem getCurrentPlaylistItem() {
-        if (getPlaybackQueuePos() != null) {
-            if (getPlaybackQueuePos() < getPlaybackQueue().getItems().size()) {
-                return getPlaybackQueue().getItems().get(getPlaybackQueuePos());
-            }
-        }
+    	if (playbackMode.equals(PlaybackMode.QUEUE_RADIO)) {
+    		if (getRadioPlaybackPos() != null) {
+    			if (getRadioPlaybackPos() < getRadioPlaybackQueue().getItems().size()) {    				
+    				return getRadioPlaybackQueue().getItems().get(getRadioPlaybackPos());
+    			}
+    		}
+    	} else if (playbackMode.equals(PlaybackMode.QUEUE_STATIC)) {
+    		if (getPlaybackQueuePos() != null) {
+	            if (getPlaybackQueuePos() < getPlaybackQueue().getItems().size()) {
+	                return getPlaybackQueue().getItems().get(getPlaybackQueuePos());
+	            }
+    		}
+    	}
         return null;
     }
 
@@ -169,4 +183,28 @@ public class PlayerStatus {
     public void setStorage(PlayerStatusStorage storage) {
         this.storage = storage;
     }
+
+	public PlaybackMode getPlaybackMode() {
+		return playbackMode;
+	}
+
+	public void setPlaybackMode(PlaybackMode playMode) {
+		this.playbackMode = playMode;
+	}
+
+	public Integer getRadioPlaybackPos() {
+		return radioPlaybackPos;
+	}
+
+	public void setRadioPlaybackPos(Integer radioPlaybackPos) {
+		this.radioPlaybackPos = radioPlaybackPos;
+	}
+
+	public PlaybackQueue getRadioPlaybackQueue() {
+		return radioPlaybackQueue;
+	}
+
+	public void setRadioPlaybackQueue(PlaybackQueue radioPlaybackQueue) {
+		this.radioPlaybackQueue = radioPlaybackQueue;
+	}
 }
