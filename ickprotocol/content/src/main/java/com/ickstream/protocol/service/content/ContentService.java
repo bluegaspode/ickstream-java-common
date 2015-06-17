@@ -37,6 +37,7 @@ import com.ickstream.protocol.common.exception.ServiceTimeoutException;
 import com.ickstream.protocol.service.AbstractService;
 import com.ickstream.protocol.service.AccountInformation;
 import com.ickstream.protocol.service.PersonalizedService;
+import com.ickstream.protocol.service.player.PlaybackQueueItem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -344,6 +345,50 @@ public abstract class ContentService extends AbstractService implements Personal
 
     public void getItemStreamingRef(GetItemStreamingRefRequest request, MessageHandler<StreamingReference> messageHandler, Integer timeout) {
         sendRequest("getItemStreamingRef", request, StreamingReference.class, messageHandler, timeout);
+    }
+
+    public PlaybackQueueItem getCurrentRadioTrack(GetCurrentRadioTrackRequest request) throws ServiceException, ServiceTimeoutException {
+        return getCurrentRadioTrack(request, (Integer) null);
+    }
+
+    public PlaybackQueueItem getCurrentRadioTrack(GetCurrentRadioTrackRequest request, Integer timeout) throws ServiceException, ServiceTimeoutException {
+        try {
+            return sendRequest("getRadioTrack", request, PlaybackQueueItem.class, timeout);
+        } catch (JsonRpcException e) {
+            throw getServiceException(e);
+        } catch (JsonRpcTimeoutException e) {
+            throw new ServiceTimeoutException(e);
+        }
+    }
+
+    public void getCurrentRadioTrack(GetCurrentRadioTrackRequest request, MessageHandler<PlaybackQueueItem> messageHandler) {
+    	getCurrentRadioTrack(request, messageHandler, (Integer) null);
+    }
+
+    public void getCurrentRadioTrack(GetCurrentRadioTrackRequest request, MessageHandler<PlaybackQueueItem> messageHandler, Integer timeout) {
+        sendRequest("getRadioTrack", request, PlaybackQueueItem.class, messageHandler, timeout);
+    }
+
+    public PlaybackQueueItem getSkippedRadioTrack(SkipRadioTrackRequest request) throws ServiceException, ServiceTimeoutException {
+        return getSkippedRadioTrack(request, (Integer) null);
+    }
+
+    public PlaybackQueueItem getSkippedRadioTrack(SkipRadioTrackRequest request, Integer timeout) throws ServiceException, ServiceTimeoutException {
+        try {
+            return sendRequest("skipRadioTrack", request, PlaybackQueueItem.class, timeout);
+        } catch (JsonRpcException e) {
+            throw getServiceException(e);
+        } catch (JsonRpcTimeoutException e) {
+            throw new ServiceTimeoutException(e);
+        }
+    }
+
+    public void getSkippedRadioTrack(SkipRadioTrackRequest request, MessageHandler<PlaybackQueueItem> messageHandler) {
+    	getSkippedRadioTrack(request, messageHandler, (Integer) null);
+    }
+
+    public void getSkippedRadioTrack(SkipRadioTrackRequest request, MessageHandler<PlaybackQueueItem> messageHandler, Integer timeout) {
+        sendRequest("skipRadioTrack", request, PlaybackQueueItem.class, messageHandler, timeout);
     }
 
     public ContentResponse getNextDynamicPlaylistTracksRequest(GetNextDynamicPlaylistTracksRequest request) throws ServiceException, ServiceTimeoutException {
