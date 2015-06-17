@@ -47,7 +47,7 @@ public class PlayerStatus {
     private PlaybackQueueMode playbackQueueMode = PlaybackQueueMode.QUEUE;
     private PlaybackMode playbackMode = PlaybackMode.QUEUE_STATIC;
     @JsonIgnore
-    private PlaybackQueue radioPlaybackQueue;
+    private PlaybackQueue radioPlaybackQueue; // seperate queue to not loose static queue
     @JsonIgnore
     private PlaybackQueue playbackQueue;
 
