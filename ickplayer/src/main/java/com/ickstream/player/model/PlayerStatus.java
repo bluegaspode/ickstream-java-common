@@ -189,7 +189,10 @@ public class PlayerStatus {
 	}
 
 	public void setPlaybackMode(PlaybackMode playMode) {
-		this.playbackMode = playMode;
+		if (!this.playbackMode.equals(playbackMode)) {
+            this.playbackMode = playMode;
+            updateTimestamp();
+        }
 	}
 
 	public Integer getRadioPlaybackPos() {
@@ -197,7 +200,10 @@ public class PlayerStatus {
 	}
 
 	public void setRadioPlaybackPos(Integer radioPlaybackPos) {
-		this.radioPlaybackPos = radioPlaybackPos;
+        if ((radioPlaybackPos == null && this.radioPlaybackPos != null) || (radioPlaybackPos != null && !radioPlaybackPos.equals(this.radioPlaybackPos))) {
+            this.radioPlaybackPos = radioPlaybackPos;
+            updateTimestamp();
+        }
 	}
 
 	public PlaybackQueue getRadioPlaybackQueue() {
@@ -205,6 +211,11 @@ public class PlayerStatus {
 	}
 
 	public void setRadioPlaybackQueue(PlaybackQueue radioPlaybackQueue) {
-		this.radioPlaybackQueue = radioPlaybackQueue;
+		if (radioPlaybackQueue != null) {
+			this.radioPlaybackQueue = radioPlaybackQueue;			
+		} else {
+			this.radioPlaybackQueue = new PlaybackQueue();
+		}
+        updateTimestamp();
 	}
 }
