@@ -131,6 +131,7 @@ public class SyncJsonRpcClient extends AsyncJsonRpcClient {
      * @param params               The parameters to the method, this must be possible to serialize to JSON with the {@link JsonHelper} class
      * @param messageResponseClass The type of the response, must have a default constructor and must be possible to instantiate from JSON using {@link JsonHelper}
      * @param timeout              The timeout in millisecond, if not specified the default timeout will be used
+     * @param <T>                  The message response class to use
      * @return The JSON-RPC response
      * @throws JsonRpcTimeoutException if the operation timeout
      * @throws JsonRpcException        if the operation fails due to a JSON-RPC error received form the remote side
@@ -176,6 +177,7 @@ public class SyncJsonRpcClient extends AsyncJsonRpcClient {
      * @param method               The method to call
      * @param params               The parameters to the method, this must be possible to serialize to JSON with the {@link JsonHelper} class
      * @param messageResponseClass The type of the response, must have a default constructor and must be possible to instantiate from JSON using {@link JsonHelper}
+     * @param <T>                  The message response class to use
      * @return The JSON-RPC response
      * @throws JsonRpcTimeoutException if the operation timeout
      * @throws JsonRpcException        if the operation fails due to a JSON-RPC error received form the remote side

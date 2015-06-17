@@ -34,9 +34,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.lang.reflect.Type;
 
 /**
@@ -102,6 +100,7 @@ public class JsonHelper {
             return mapper.treeToValue(mapper.readTree(text), objectClass);
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println(text);
         }
         return null;
     }
@@ -116,9 +115,23 @@ public class JsonHelper {
      */
     public <T> T streamToObject(InputStream stream, Class<T> objectClass) {
         try {
-            return mapper.treeToValue(mapper.readTree(stream), objectClass);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuilder out = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+                out.append('\n');
+            }
+            reader.close();
+            return stringToObject(out.toString(), objectClass);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }

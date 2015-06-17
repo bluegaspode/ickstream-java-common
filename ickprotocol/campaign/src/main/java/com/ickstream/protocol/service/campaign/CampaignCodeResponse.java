@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, ickStream GmbH
+ * Copyright (c) 2013-2015, ickStream GmbH
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,61 +26,61 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.ickstream.protocol.service.player;
+package com.ickstream.protocol.service.campaign;
 
-public class PlayerConfigurationResponse {
-    String id;
-    String playerName;
-    String playerModel;
-    String cloudCoreUrl;
-    CloudCoreStatus cloudCoreStatus;
-    String userId;
+public class CampaignCodeResponse {
+    private String campaignId;
+    private String campaignName;
+    private String campaignDescription;
+    private String campaignUrl;
+    private String code;
+    private String service;
 
-    public String getId() {
-        return id;
+    public String getCampaignId() {
+        return campaignId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCampaignId(String campaignId) {
+        this.campaignId = campaignId;
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public String getCampaignName() {
+        return campaignName;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void setCampaignName(String campaignName) {
+        this.campaignName = campaignName;
     }
 
-    public String getPlayerModel() {
-        return playerModel;
+    public String getCode() {
+        return code;
     }
 
-    public void setPlayerModel(String playerModel) {
-        this.playerModel = playerModel;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getCloudCoreUrl() {
-        return cloudCoreUrl;
+    public String getService() {
+        return service;
     }
 
-    public void setCloudCoreUrl(String cloudCoreUrl) {
-        this.cloudCoreUrl = cloudCoreUrl;
+    public void setService(String service) {
+        this.service = service;
     }
 
-    public CloudCoreStatus getCloudCoreStatus() {
-        return cloudCoreStatus;
+    public String getCampaignDescription() {
+        return campaignDescription;
     }
 
-    public void setCloudCoreStatus(CloudCoreStatus cloudCoreStatus) {
-        this.cloudCoreStatus = cloudCoreStatus;
+    public void setCampaignDescription(String campaignDescription) {
+        this.campaignDescription = campaignDescription;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getCampaignUrl() {
+        return campaignUrl;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCampaignUrl(String campaignUrl) {
+        this.campaignUrl = campaignUrl;
     }
 }

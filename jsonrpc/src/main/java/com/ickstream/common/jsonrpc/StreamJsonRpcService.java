@@ -42,15 +42,18 @@ import java.util.*;
 /**
  * Implementation of a JSON-RPC service, the purpose is to abstract JSON-RPC transport protocol and parsing from the
  * service implementation.
- * <p/>
+ * <p>
  * The communication is handled over {@link InputStream} and {@link OutputStream}.
- * <p/>
+ * </p>
+ * <p>
  * The implemetation will expose all public methods in the service interface specified
  * as a JSON-RPC service and use the {@link JsonRpcParam}, {@link JsonRpcParamStructure} annotations to detect which
  * method parameters that are required and fill them with data from the incomming JSON-RPC requests.
- * <p/>
+ * </p>
+ * <p>
  * The implementation will also use {@link JsonRpcResult} and {@link JsonRpcErrors} annotations to detect how to create
  * and represent the response or errors from the called method.
+ * </p>
  */
 public class StreamJsonRpcService {
     private Object serviceImplementation;
@@ -66,10 +69,11 @@ public class StreamJsonRpcService {
     /**
      * Creates a new instance which expose the specified service interface and implements it using the specified
      * service implementation.
-     * <p/>
+     * <p>
      * The instance will not return any response for method with a void return value.
      * The instance will ignore JSON-RPC response messages, this is typically what a service should do since it answers
      * on JSON-RPC requests and doesn't send any JSON-RPC requests by itself.
+     * </p>
      *
      * @param serviceImplementation The service implementation that implements the service interface
      * @param serviceInterface      The service interface to expose
@@ -82,14 +86,16 @@ public class StreamJsonRpcService {
     /**
      * Creates a new instance which expose the specified service interface and implements it using the specified
      * service implementation.
-     * <p/>
+     * <p>
      * The instance will ignore JSON-RPC response messages, this is typically what a service should do since it answers
      * on JSON-RPC requests and doesn't send any JSON-RPC requests by itself.
+     * </p>
      *
      * @param serviceImplementation The service implementation that implements the service interface
      * @param serviceInterface      The service interface to expose
      * @param returnOnVoid          true if void methods should return a JSON-RPC response, else false
-     * @param <T>                   The service interface to expose
+     * @param <T>                   The service implementation to use
+     * @param <I>                   The service interface to expose
      */
     public <I, T extends I> StreamJsonRpcService(T serviceImplementation, Class<I> serviceInterface, Boolean returnOnVoid) {
         this(serviceImplementation, serviceInterface, returnOnVoid, true);
@@ -103,7 +109,8 @@ public class StreamJsonRpcService {
      * @param serviceInterface      The service interface to expose
      * @param returnOnVoid          true if void methods should return a JSON-RPC response, else false
      * @param ignoreResponses       true if response message should be completely ignored
-     * @param <T>                   The service interface to expose
+     * @param <T>                   The service implementation to use
+     * @param <I>                   The service interface to expose
      */
     public <I, T extends I> StreamJsonRpcService(T serviceImplementation, Class<I> serviceInterface, Boolean returnOnVoid, Boolean ignoreResponses) {
         this.serviceImplementation = serviceImplementation;

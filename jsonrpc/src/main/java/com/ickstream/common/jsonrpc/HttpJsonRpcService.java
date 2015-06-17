@@ -37,14 +37,21 @@ import java.io.OutputStream;
 /**
  * Implementation of a JSON-RPC service, the purpose is to abstract JSON-RPC transport protocol and parsing from the
  * service implementation.
- * <p/>
+ * <p>
  * The communication is handled as {@link HttpServletRequest} and {@link HttpServletResponse} objects.
- * <p/>
+ * </p>
+ * <p>
  * See {@link StreamJsonRpcService} for more details
+ * </p>
  */
 public class HttpJsonRpcService extends StreamJsonRpcService {
 
     /**
+     * @param serviceImplementation The service implementation that implements the service interface
+     * @param serviceInterface      The service interface to expose
+     * @param <T>                   The service implementation to use
+     * @param <I>                   The service interface to expose
+     *
      * See {@link StreamJsonRpcService#StreamJsonRpcService(Object, Class)} for more information
      */
     public <I, T extends I> HttpJsonRpcService(T serviceImplementation, Class<I> serviceInterface) {
@@ -57,6 +64,7 @@ public class HttpJsonRpcService extends StreamJsonRpcService {
      *
      * @param request  The {@link HttpServletRequest} that contains the JSON-RPC request/notification
      * @param response The {@link HttpServletResponse} which the result should be written to
+     * @throws java.io.IOException When an error occurrs
      */
     public void handle(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");

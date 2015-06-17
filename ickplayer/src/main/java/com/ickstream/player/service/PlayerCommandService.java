@@ -189,6 +189,7 @@ public class PlayerCommandService {
     public PlayerConfigurationResponse getPlayerConfiguration() {
         synchronized (syncObject) {
             PlayerConfigurationResponse response = new PlayerConfigurationResponse();
+            response.setId(player.getId());
             response.setPlayerName(player.getName());
             response.setPlayerModel(player.getModel());
             response.setCloudCoreUrl(player.getCloudCoreUrl());

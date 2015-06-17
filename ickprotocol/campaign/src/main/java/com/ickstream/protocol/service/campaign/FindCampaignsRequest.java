@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2014, ickStream GmbH
+ * Copyright (c) 2013-2015, ickStream GmbH
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,61 +26,47 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.ickstream.protocol.service.player;
+package com.ickstream.protocol.service.campaign;
 
-public class PlayerConfigurationResponse {
-    String id;
-    String playerName;
-    String playerModel;
-    String cloudCoreUrl;
-    CloudCoreStatus cloudCoreStatus;
-    String userId;
+import com.ickstream.protocol.common.ChunkedRequest;
 
-    public String getId() {
-        return id;
+public class FindCampaignsRequest extends ChunkedRequest {
+    private String applicationId;
+    private String serviceId;
+
+    public FindCampaignsRequest(String applicationId) {
+        this.applicationId = applicationId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public FindCampaignsRequest(String applicationId, String serviceId) {
+        this.applicationId = applicationId;
+        this.serviceId = serviceId;
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public FindCampaignsRequest(Integer offset, Integer count, String applicationId) {
+        super(offset, count);
+        this.applicationId = applicationId;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public FindCampaignsRequest(Integer offset, Integer count, String applicationId, String serviceId) {
+        super(offset, count);
+        this.applicationId = applicationId;
+        this.serviceId = serviceId;
     }
 
-    public String getPlayerModel() {
-        return playerModel;
+    public String getApplicationId() {
+        return applicationId;
     }
 
-    public void setPlayerModel(String playerModel) {
-        this.playerModel = playerModel;
+    public void setApplicationId(String applicationId) {
+        this.applicationId = applicationId;
     }
 
-    public String getCloudCoreUrl() {
-        return cloudCoreUrl;
+    public String getServiceId() {
+        return serviceId;
     }
 
-    public void setCloudCoreUrl(String cloudCoreUrl) {
-        this.cloudCoreUrl = cloudCoreUrl;
-    }
-
-    public CloudCoreStatus getCloudCoreStatus() {
-        return cloudCoreStatus;
-    }
-
-    public void setCloudCoreStatus(CloudCoreStatus cloudCoreStatus) {
-        this.cloudCoreStatus = cloudCoreStatus;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
     }
 }
