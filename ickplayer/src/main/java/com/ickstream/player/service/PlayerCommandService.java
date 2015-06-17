@@ -724,8 +724,6 @@ public class PlayerCommandService {
 		synchronized (syncObject) {
 			playerStatus.setPlaybackMode(PlaybackMode.QUEUE_RADIO);
 			
-			playerStatus.setRadioPlaybackQueue(new PlaybackQueue());
-			
 			// creare radio queue
 			playerStatus.getRadioPlaybackQueue().setId(radioId);
 	        playerStatus.getRadioPlaybackQueue().setName(radioId);
