@@ -55,15 +55,20 @@ public class PlayerStatus {
     private PlayerStatusStorage storage;
 
     public PlayerStatus() {
-        this(new PlaybackQueue());
+        this(new PlaybackQueue(), new PlaybackQueue());
     }
 
     public PlayerStatus(PlaybackQueue playbackQueue) {
-        this.playbackQueue = playbackQueue;
+    	this(playbackQueue, new PlaybackQueue());
     }
 
-    public PlayerStatus(PlaybackQueue playbackQueue, PlayerStatusStorage storage) {
-        this(playbackQueue);
+    public PlayerStatus(PlaybackQueue playbackQueue, PlaybackQueue radioPlaybackQueue) {
+        this.playbackQueue = playbackQueue;
+        this.radioPlaybackQueue = radioPlaybackQueue;
+    }
+
+    public PlayerStatus(PlaybackQueue playbackQueue, PlaybackQueue radioPlaybackQueue, PlayerStatusStorage storage) {
+        this(playbackQueue, radioPlaybackQueue);
         this.storage = storage;
     }
 
@@ -188,9 +193,9 @@ public class PlayerStatus {
 		return playbackMode;
 	}
 
-	public void setPlaybackMode(PlaybackMode playMode) {
+	public void setPlaybackMode(PlaybackMode playbackMode) {
 		if (!this.playbackMode.equals(playbackMode)) {
-            this.playbackMode = playMode;
+            this.playbackMode = playbackMode;
             updateTimestamp();
         }
 	}
