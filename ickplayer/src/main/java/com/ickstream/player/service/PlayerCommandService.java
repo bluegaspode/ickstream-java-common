@@ -741,6 +741,21 @@ public class PlayerCommandService {
 			}
 		}
 	}
+	
+	public void skipTrack(@JsonRpcParam(name = "offset") final Integer offset ) {
+		synchronized (syncObject) {
+			if (playerStatus.getPlaybackMode().equals(PlaybackMode.QUEUE_RADIO)) {
+				playerStatus.setRadioPlaybackPos(playerStatus.getRadioPlaybackPos() + offset + 1);
+				if (playerStatus.getPlaying() && player != null) {
+					player.play();
+				} else {
+					if (player != null) {
+						player.sendPlayerStatusChangedNotification();
+					}
+				}
+			}
+		}
+	}
 
     public VolumeResponse getVolume() {
         synchronized (syncObject) {
