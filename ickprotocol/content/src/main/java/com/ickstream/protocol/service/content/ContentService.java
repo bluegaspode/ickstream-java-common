@@ -29,6 +29,7 @@
 package com.ickstream.protocol.service.content;
 
 import com.ickstream.common.jsonrpc.*;
+import com.ickstream.player.model.PlaybackQueueItemInstance;
 import com.ickstream.protocol.common.ChunkedRequest;
 import com.ickstream.protocol.common.data.ContentItem;
 import com.ickstream.protocol.common.data.StreamingReference;
@@ -37,7 +38,6 @@ import com.ickstream.protocol.common.exception.ServiceTimeoutException;
 import com.ickstream.protocol.service.AbstractService;
 import com.ickstream.protocol.service.AccountInformation;
 import com.ickstream.protocol.service.PersonalizedService;
-import com.ickstream.protocol.service.player.PlaybackQueueItem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -347,13 +347,13 @@ public abstract class ContentService extends AbstractService implements Personal
         sendRequest("getItemStreamingRef", request, StreamingReference.class, messageHandler, timeout);
     }
 
-    public PlaybackQueueItem getCurrentRadioTrack(GetCurrentRadioTrackRequest request) throws ServiceException, ServiceTimeoutException {
+    public PlaybackQueueItemInstance getCurrentRadioTrack(GetCurrentRadioTrackRequest request) throws ServiceException, ServiceTimeoutException {
         return getCurrentRadioTrack(request, (Integer) null);
     }
 
-    public PlaybackQueueItem getCurrentRadioTrack(GetCurrentRadioTrackRequest request, Integer timeout) throws ServiceException, ServiceTimeoutException {
+    public PlaybackQueueItemInstance getCurrentRadioTrack(GetCurrentRadioTrackRequest request, Integer timeout) throws ServiceException, ServiceTimeoutException {
         try {
-            return sendRequest("getRadioTrack", request, PlaybackQueueItem.class, timeout);
+            return sendRequest("getRadioTrack", request, PlaybackQueueItemInstance.class, timeout);
         } catch (JsonRpcException e) {
             throw getServiceException(e);
         } catch (JsonRpcTimeoutException e) {
@@ -361,21 +361,21 @@ public abstract class ContentService extends AbstractService implements Personal
         }
     }
 
-    public void getCurrentRadioTrack(GetCurrentRadioTrackRequest request, MessageHandler<PlaybackQueueItem> messageHandler) {
+    public void getCurrentRadioTrack(GetCurrentRadioTrackRequest request, MessageHandler<PlaybackQueueItemInstance> messageHandler) {
     	getCurrentRadioTrack(request, messageHandler, (Integer) null);
     }
 
-    public void getCurrentRadioTrack(GetCurrentRadioTrackRequest request, MessageHandler<PlaybackQueueItem> messageHandler, Integer timeout) {
-        sendRequest("getRadioTrack", request, PlaybackQueueItem.class, messageHandler, timeout);
+    public void getCurrentRadioTrack(GetCurrentRadioTrackRequest request, MessageHandler<PlaybackQueueItemInstance> messageHandler, Integer timeout) {
+        sendRequest("getRadioTrack", request, PlaybackQueueItemInstance.class, messageHandler, timeout);
     }
 
-    public PlaybackQueueItem getSkippedRadioTrack(SkipRadioTrackRequest request) throws ServiceException, ServiceTimeoutException {
+    public PlaybackQueueItemInstance getSkippedRadioTrack(SkipRadioTrackRequest request) throws ServiceException, ServiceTimeoutException {
         return getSkippedRadioTrack(request, (Integer) null);
     }
 
-    public PlaybackQueueItem getSkippedRadioTrack(SkipRadioTrackRequest request, Integer timeout) throws ServiceException, ServiceTimeoutException {
+    public PlaybackQueueItemInstance getSkippedRadioTrack(SkipRadioTrackRequest request, Integer timeout) throws ServiceException, ServiceTimeoutException {
         try {
-            return sendRequest("skipRadioTrack", request, PlaybackQueueItem.class, timeout);
+            return sendRequest("skipRadioTrack", request, PlaybackQueueItemInstance.class, timeout);
         } catch (JsonRpcException e) {
             throw getServiceException(e);
         } catch (JsonRpcTimeoutException e) {
@@ -383,12 +383,12 @@ public abstract class ContentService extends AbstractService implements Personal
         }
     }
 
-    public void getSkippedRadioTrack(SkipRadioTrackRequest request, MessageHandler<PlaybackQueueItem> messageHandler) {
+    public void getSkippedRadioTrack(SkipRadioTrackRequest request, MessageHandler<PlaybackQueueItemInstance> messageHandler) {
     	getSkippedRadioTrack(request, messageHandler, (Integer) null);
     }
 
-    public void getSkippedRadioTrack(SkipRadioTrackRequest request, MessageHandler<PlaybackQueueItem> messageHandler, Integer timeout) {
-        sendRequest("skipRadioTrack", request, PlaybackQueueItem.class, messageHandler, timeout);
+    public void getSkippedRadioTrack(SkipRadioTrackRequest request, MessageHandler<PlaybackQueueItemInstance> messageHandler, Integer timeout) {
+        sendRequest("skipRadioTrack", request, PlaybackQueueItemInstance.class, messageHandler, timeout);
     }
 
     public ContentResponse getNextDynamicPlaylistTracksRequest(GetNextDynamicPlaylistTracksRequest request) throws ServiceException, ServiceTimeoutException {
