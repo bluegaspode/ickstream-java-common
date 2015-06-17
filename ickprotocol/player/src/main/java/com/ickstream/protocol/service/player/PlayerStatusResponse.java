@@ -37,6 +37,7 @@ public class PlayerStatusResponse {
     private Boolean muted;
     private PlaybackQueueItem track;
     private PlaybackQueueMode playbackQueueMode;
+    private PlaybackMode playbackMode;
     private CloudCoreStatus cloudCoreStatus;
     private String userId;
 
@@ -119,4 +120,12 @@ public class PlayerStatusResponse {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+	public PlaybackMode getPlaybackMode() {
+		return playbackMode;
+	}
+
+	public void setPlaybackMode(PlaybackMode playbackMode) {
+		this.playbackMode = playbackMode;
+	}
 }
