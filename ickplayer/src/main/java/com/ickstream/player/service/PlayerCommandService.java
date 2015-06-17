@@ -716,6 +716,31 @@ public class PlayerCommandService {
             }
         }
     }
+    
+	public void setRadioTrack(@JsonRpcParam(name = "radioId") final String radioId ) {
+		synchronized (syncObject) {
+			playerStatus.setPlaybackMode(PlaybackMode.QUEUE_RADIO);
+			
+			// creare radio queue
+			playerStatus.getRadioPlaybackQueue().setId(radioId);
+	        playerStatus.getRadioPlaybackQueue().setName(radioId);
+	        // initialize with item empty list
+	        // items will be filled dynamically while playing
+	        List<PlaybackQueueItemInstance> instances = new ArrayList<PlaybackQueueItemInstance>();
+	        playerStatus.getRadioPlaybackQueue().setOriginallyOrderedItems(new ArrayList<PlaybackQueueItemInstance>(instances));
+	        playerStatus.getRadioPlaybackQueue().setItems(instances);
+
+	        playerStatus.setRadioPlaybackPos(0);
+			
+			if (playerStatus.getPlaying() && player != null) {
+				player.play();
+			} else {
+				if (player != null) {
+					player.sendPlayerStatusChangedNotification();
+				}
+			}
+		}
+	}
 
     public VolumeResponse getVolume() {
         synchronized (syncObject) {
