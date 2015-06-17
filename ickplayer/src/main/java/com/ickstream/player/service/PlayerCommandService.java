@@ -29,6 +29,7 @@
 package com.ickstream.player.service;
 
 import com.ickstream.common.jsonrpc.*;
+import com.ickstream.player.model.PlaybackQueue;
 import com.ickstream.player.model.PlaybackQueueItemInstance;
 import com.ickstream.player.model.PlayerStatus;
 import com.ickstream.protocol.common.NetworkAddressHelper;
@@ -722,6 +723,8 @@ public class PlayerCommandService {
 	public void setRadioTrack(@JsonRpcParam(name = "radioId") final String radioId ) {
 		synchronized (syncObject) {
 			playerStatus.setPlaybackMode(PlaybackMode.QUEUE_RADIO);
+			
+			playerStatus.setRadioPlaybackQueue(new PlaybackQueue());
 			
 			// creare radio queue
 			playerStatus.getRadioPlaybackQueue().setId(radioId);
