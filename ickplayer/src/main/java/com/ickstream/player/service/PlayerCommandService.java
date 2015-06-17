@@ -716,20 +716,6 @@ public class PlayerCommandService {
             }
         }
     }
-    
-	public void setRadioTrack(@JsonRpcParam(name = "radioId") final String radioId ) {
-		synchronized (syncObject) {
-			playerStatus.setRadioId(radioId);
-			playerStatus.setPlaybackMode(PlaybackQueueMode.QUEUE_RADIO);
-			if (true || playerStatus.getPlaying() && player != null) {
-                player.play();
-            } else {
-                if (player != null) {
-                    player.sendPlayerStatusChangedNotification();
-                }
-            }
-		}
-	}
 
     public VolumeResponse getVolume() {
         synchronized (syncObject) {
